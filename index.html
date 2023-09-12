@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Fetch Books</title>
+</head>
+<body>
+  <button id="fetchBooks">Fetch Books</button>
+  <ol>
+  <div id="bookList"></div>
+  </ol>
+  <script>
+    const fetchBooks = document.getElementById("fetchBooks");
+    const booklist = document.getElementById("bookList");
+
+fetchBooks.addEventListener("click", async() => {
+  const books=await fetch('books.json').then(res=>res.json())
+  // console.log(books.books)
+  
+  const data = books.books.map((book) => {
+    // console.log(book.title)
+    return(`<h1 class='book-name'><li>${book.title}</li></h1>`)
+  })
+
+
+  booklist.innerHTML = data
+})
+  </script>
+</body>
+</html>
